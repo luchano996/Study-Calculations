@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study-Calculations</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f5f9;
+      color: #1f2937;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      color: #2563eb;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #eff6ff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .motivation {
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📚 Study-Calculations</h1>
+    <p>Student Marks Calculator & Study Motivation</p>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>📊 Calculate Your Mark</h2>
+
+      <label for="mark1">Mark 1 (%)</label>
+      <input type="number" id="mark1" min="0" max="100" placeholder="Enter your mark">
+
+      <label for="mark2">Mark 2 (%)</label>
+      <input type="number" id="mark2" min="0" max="100" placeholder="Enter your mark">
+
+      <label for="mark3">Mark 3 (%)</label>
+      <input type="number" id="mark3" min="0" max="100" placeholder="Enter your mark">
+
+      <button onclick="calculateMark()">Calculate Average</button>
+
+      <div id="result">
+        Enter your marks above.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🔥 Study Motivation</h2>
+
+      <div class="motivation" id="motivation">
+        Believe in yourself. Small progress every day leads to big results! 💪
+      </div>
+
+      <button onclick="newMotivation()">Give Me Motivation</button>
+    </div>
+
+  </div>
+
+  <footer>
+    Study-Calculations © 2026
+  </footer>
+
+  <script>
+    function calculateMark() {
+      const mark1 = Number(document.getElementById("mark1").value);
+      const mark2 = Number(document.getElementById("mark2").value);
+      const mark3 = Number(document.getElementById("mark3").value);
+
+      if (
+        mark1 < 0 || mark1 > 100 ||
+        mark2 < 0 || mark2 > 100 ||
+        mark3 < 0 || mark3 > 100
+      ) {
+        document.getElementById("result").innerHTML =
+          "Please enter marks between 0 and 100.";
+        return;
+      }
+
+      const average = (mark1 + mark2 + mark3) / 3;
+
+      let message = "";
+
+      if (average >= 80) {
+        message = "Excellent work! 🏆";
+      } else if (average >= 70) {
+        message = "Great job! Keep pushing! 🔥";
+      } else if (average >= 60) {
+        message = "Good work! You can improve even more! 💪";
+      } else if (average >= 50) {
+        message = "You're passing. Keep studying! 📚";
+      } else {
+        message = "Don't give up. You can improve! ❤️";
+      }
+
+      document.getElementById("result").innerHTML =
+        "Your average: " + average.toFixed(1) + "%<br>" + message;
+    }
+
+    function newMotivation() {
+      const messages = [
+        "You don't have to be perfect. Just keep improving! 💪",
+        "Every study session brings you closer to your goals! 📚",
+        "Believe in yourself and keep going! 🔥",
+        "Your future self will thank you for studying today! 🚀",
+        "Hard work today can create opportunities tomorrow! 🏆"
+      ];
+
+      const randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
+
+      document.getElementById("motivation").innerHTML = randomMessage;
+    }
+  </script>
+
+</body>
+</html>
